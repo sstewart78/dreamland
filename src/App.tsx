@@ -407,7 +407,9 @@ function App() {
                         {level.icon}
                       </div>
                       <div className="flex flex-col items-start text-left flex-1">
-                        
+                        <span className={`text-sm font-semibold truncate ${selectedLevel.id === level.id ? 'text-white' : ''}`}>
+                          {level.name}
+                        </span>
                       </div>
                     </button>
                   ))}
