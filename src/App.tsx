@@ -20,6 +20,7 @@ import Background from './Background/Background';
 import Vignette from './Vignette/Vignette';
 import Nav from './Nav/Nav';
 import HUDToggle from './HUDToggle/HUDToggle';
+import Scanline from './Scanline/Scanline';
 
 const SATURN_6_LEVELS = [
   { 
@@ -169,7 +170,7 @@ function App() {
         {}
         <main className='relative z-10 flex-1 overflow-hidden'>
           {/* Scanline Overlay */}
-          <div className="absolute inset-0 pointer-events-none z-30 opacity-15 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.4)_50%)] bg-size-[100%_4px]" />
+          <Scanline />
 
           {/* TAB 1: HOME - COMING SOON */}
           {activeTab === 'home' && (
