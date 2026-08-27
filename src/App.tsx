@@ -13,14 +13,13 @@ import {
   Info,
   Radio,
   ExternalLink,
-  BookOpen,
-  MapPin,
   Terminal,
   Layers,
   Eye
 } from 'lucide-react';
 import Background from './Background/Background';
 import Vignette from './Vignette/Vignette';
+import Nav from './Nav/Nav';
 
 const SATURN_6_LEVELS = [
   { 
@@ -162,28 +161,7 @@ function App() {
         {}
         <header className="relative z-50 flex items-center justify-between px-6 py-3 border-b border-cyan-500/30 bg-[#0a0d12]/80 backdrop-blur-md shadow-lg">
           {/* Tab Navigation */}
-          <nav className='flex items-center gap-2 bg-black/60 p-1 rounded-lg border border-cyan-500/30 backdrop-blur-md'>
-            <button 
-              onClick={() => setActiveTab('home')}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider transition-all ${
-              activeTab === 'home'
-                ? 'bg-cyan-500/30 text-cyan-200 border border-cyan-400/70 shadow-[0_0_15px_rgba(34,211,238,0.3)]'
-                : 'text-cyan-400/70 hover:text-cyan-300 hover:bg-cyan-950/40'
-            }`}
-            >
-              <BookOpen className='w-3.5 h-3.5' /> Overview
-            </button>
-            <button 
-              onClick={() => setActiveTab('saturn6')}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider transition-all ${
-              activeTab === 'saturn6'
-                ? 'bg-cyan-500/30 text-cyan-200 border border-cyan-400/70 shadow-[0_0_15px_rgba(34,211,238,0.3)]'
-                : 'text-cyan-400/70 hover:text-cyan-300 hover:bg-cyan-950/40'
-            }`}
-            >
-              <MapPin className='w-3.5 h-3.5' /> Saturn-6 Map
-            </button>
-          </nav>
+          <Nav activeTab={activeTab} onTabChange={setActiveTab} />
 
           {/* Glass HUD Toggle */}
           <div className='flex items-center gap-3 text-[10ox] font-mono'>
