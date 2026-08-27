@@ -231,7 +231,7 @@ function App() {
                   <Terminal className='w-3.5 h-3.5' /> ARCHIVE DATA TRANSMISSION
                 </div>
 
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] uppercase">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-wider text-transparent bg-clip-text bg-linear-to-r from-white via-cyan-100 to-cyan-400 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] uppercase">
                   The Path to Dreamland
                 </h1>
 
