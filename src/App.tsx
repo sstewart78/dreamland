@@ -20,6 +20,7 @@ import {
   Eye
 } from 'lucide-react';
 import Background from './Background/Background';
+import Vignette from './Vignette/Vignette';
 
 const SATURN_6_LEVELS = [
   { 
@@ -154,11 +155,8 @@ function App() {
       <section className="relative flex flex-col h-screen text-cyan-50 font-sans overflow-hidden select-none bg-[#030500]">
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           <Background />
-
           {/* Light Environmental Vignette Overlay */}
-          <div className='absolute inset-0 bg-linear-to-t from-[#030508] via-transparent to-black/60 transition-opacity duration-500'
-               style={{ opacity: bgOpacity <= 0.3 ? 0.1 : bgOpacity <= 0.6 ? 0.4 : 0.7 }} 
-          />
+          <Vignette bgOpacity={bgOpacity} />
         </div>
 
         {}
