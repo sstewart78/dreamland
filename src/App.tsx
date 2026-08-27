@@ -16,11 +16,8 @@ import {
   BookOpen,
   MapPin,
   Terminal,
-  Activity,
   Layers,
-  Eye,
-  Image as ImageIcon,
-  AlertTriangle
+  Eye
 } from 'lucide-react';
 
 const SATURN_6_LEVELS = [
