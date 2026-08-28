@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import Background from './Background/Background';
-import Vignette from './Vignette/Vignette';
+import BackgroundLayer from './BackgroundLayer/BackgroundLayer';
 import Header from './Header/Header';
 import Scanline from './Scanline/Scanline';
 import Home from './Home/Home';
@@ -27,10 +26,7 @@ function App() {
   return (
     <>
       <section className="relative flex flex-col h-screen text-cyan-50 font-sans overflow-hidden select-none bg-[#030500]">
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          <Background />
-          <Vignette bgOpacity={bgOpacity} />
-        </div>
+        <BackgroundLayer bgOpacity={bgOpacity} />
         <Header
           activeTab={activeTab}
           onTabChange={setActiveTab}
