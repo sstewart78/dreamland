@@ -3,8 +3,8 @@ export function Animations() {
         /* Animations */
         <style dangerouslySetInnerHTML={{ __html: `
           @keyframes scan { from { transform: translateY(0); } to { transform: translateY(256px); } }
-          @keyfranes spin-slow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-          @keyfranes reverse-spin { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
+          @keyframes spin-slow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+          @keyframes reverse-spin { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
           .animate-scan { animation: scan 3s linear infinite; }
           .animate-spin-slow { animation: spin-slow 20s linear infinite; }
           .animate-reverse-spin { animation: reverse-spin 15s linear infinite; }
