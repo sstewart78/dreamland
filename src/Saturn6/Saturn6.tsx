@@ -128,10 +128,29 @@ type HomeProps = {
 export function Saturn6({ getGlassStyle, bgOpacity}: HomeProps) {
     const [selectedLevel, setSelectedLevel] = useState(SATURN_6_LEVELS[0]);
     const [isHologramActive, setIsHologramActive] = useState(false);
+    const [linkSpeed, setLinkSpeed] = useState('8.4');
+
 
     useEffect(() => {
         const timer = setTimeout(() => setIsHologramActive(true), 500);
         return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        let timeoutId: number | undefined;
+
+        const cycleTelemetry = () => {
+            // Flucuate link speed between ~7.8 nd 9.6 GB/s
+            const jitter = (7.8 + Math.random() * 1.8).toFixed(1);
+            setLinkSpeed(jitter);
+
+            // Schedule next random update between 1000ms and 5000ms
+            const randomDelay = Math.floor(Math.random() * 2000) + 1000;
+            timeoutId = setTimeout(cycleTelemetry, randomDelay);
+        }
+
+        timeoutId = setTimeout(cycleTelemetry, 2000);
+        return () => clearTimeout(timeoutId);
     }, []);
     
     return (
@@ -222,7 +241,7 @@ export function Saturn6({ getGlassStyle, bgOpacity}: HomeProps) {
                     <div className="flex items-center gap-2 mb-2 text-cyan-400 uppercase text-[10px] font-bold">
                         <Radio className='w-3.5 h-3.5' />Core Link Speed
                     </div>
-                    <div className="text-xl font-mono text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">8.4 GB/S</div>
+                    <div className="text-xl font-mono text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{linkSpeed} GB/S</div>
                     </div>
                     <div
                     className="p-4 rounded-lg border border-cyan-500/30 transition-all duration-500"
