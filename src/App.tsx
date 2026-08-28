@@ -29,22 +29,16 @@ function App() {
       <section className="relative flex flex-col h-screen text-cyan-50 font-sans overflow-hidden select-none bg-[#030500]">
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           <Background />
-          {/* Light Environmental Vignette Overlay */}
           <Vignette bgOpacity={bgOpacity} />
         </div>
-
         <Header
           activeTab={activeTab}
           onTabChange={setActiveTab}
           bgOpacity={bgOpacity}
           setBgOpacity={setBgOpacity}
         />
-        {}
         <main className='relative z-10 flex-1 overflow-hidden'>
-          {/* Scanline Overlay */}
           <Scanline />
-
-          {/* TAB 1: HOME - COMING SOON */}
           {activeTab === 'home' && (
             <Home 
               getGlassStyle={getGlassStyle} 
@@ -52,7 +46,6 @@ function App() {
               setActiveTab={setActiveTab}
             />
           )}
-
           {activeTab === 'saturn6' && (
             <Saturn6 
               getGlassStyle={getGlassStyle} 
@@ -62,7 +55,6 @@ function App() {
         </main>
         <Animations />
       </section>
-
     </>
   )
 }
