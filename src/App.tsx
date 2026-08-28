@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Background from './Background/Background';
 import Vignette from './Vignette/Vignette';
-import Nav from './Nav/Nav';
-import HUDToggle from './HUDToggle/HUDToggle';
+import Header from './Header/Header';
 import Scanline from './Scanline/Scanline';
 import Home from './Home/Home';
 import Saturn6 from './Saturn6/Saturn6';
@@ -33,14 +32,12 @@ function App() {
           <Vignette bgOpacity={bgOpacity} />
         </div>
 
-        {}
-        <header className="relative z-50 flex items-center justify-between px-6 py-3 border-b border-cyan-500/30 bg-[#0a0d12]/80 backdrop-blur-md shadow-lg">
-          {/* Tab Navigation */}
-          <Nav activeTab={activeTab} onTabChange={setActiveTab} />
-
-          {/* Glass HUD Toggle */}
-          <HUDToggle bgOpacity={bgOpacity} setBgOpacity={setBgOpacity} />
-        </header>
+        <Header
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          bgOpacity={bgOpacity}
+          setBgOpacity={setBgOpacity}
+        />
         {}
         <main className='relative z-10 flex-1 overflow-hidden'>
           {/* Scanline Overlay */}
