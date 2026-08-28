@@ -241,7 +241,7 @@ export function Saturn6({ getGlassStyle, bgOpacity}: HomeProps) {
                     <div className="flex items-center gap-2 mb-2 text-cyan-400 uppercase text-[10px] font-bold">
                         <Radio className='w-3.5 h-3.5' />Core Link Speed
                     </div>
-                    <div className="text-xl font-mono text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{linkSpeed} GB/S</div>
+                    <div className="text-xl font-mono text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{linkSpeed} GB/s</div>
                     </div>
                     <div
                     className="p-4 rounded-lg border border-cyan-500/30 transition-all duration-500"
