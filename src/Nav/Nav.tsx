@@ -4,6 +4,7 @@ import {
   BookOpen,
   Layers,
   MapPin,
+  Sparkles,
 } from 'lucide-react';
 
 type NavProps = {
@@ -31,6 +32,13 @@ export function Nav({ activeTab, onTabChange, showMobileSchematicButton, isMobil
                   page='saturn6'
                   icon={<MapPin className='w-3.5 h-3.5' />}
                   text='Saturn-6 Map'
+                />
+                <Button
+                    activeTab={activeTab}
+                    onTabChange={onTabChange}
+                    page='preview'
+                    icon={<Sparkles className='w-3.5 h-3.5' />}
+                    text='Book'
                 />
             </div>
 
