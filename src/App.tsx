@@ -10,6 +10,8 @@ function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [bgOpacity, setBgOpacity] = useState(0.85);
   const [isMobileAsideOpen, setIsMobileAsideOpen] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+  const [emailInput, setEmailInput] = useState('');
 
   return (
     <>
@@ -30,6 +32,10 @@ function App() {
           activeTab={activeTab}
           isMobileAsideOpen={isMobileAsideOpen}
           setIsMobileAsideOpen={setIsMobileAsideOpen}
+          subscribed={subscribed}
+          setSubscribed={setSubscribed}
+          emailInput={emailInput}
+          setEmailInput={setEmailInput}
         />
         <Animations />
       </section>
