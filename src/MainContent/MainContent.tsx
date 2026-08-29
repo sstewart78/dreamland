@@ -6,9 +6,11 @@ type MainContentProps = {
   bgOpacity: number;
   setActiveTab: (tab: string) => void;
   activeTab: string;
+  isMobileAsideOpen: boolean;
+  setIsMobileAsideOpen: (isOpen: boolean) => void;
 };
 
-export function MainContent({ bgOpacity, setActiveTab, activeTab }: MainContentProps) {
+export function MainContent({ bgOpacity, setActiveTab, activeTab, isMobileAsideOpen, setIsMobileAsideOpen }: MainContentProps) {
     const getGlassStyle = (opacityVal: number | undefined) => {
         const val = opacityVal !== undefined ? opacityVal : bgOpacity;
         const clampedOpacity = Math.max(0.05, val);
@@ -33,7 +35,9 @@ export function MainContent({ bgOpacity, setActiveTab, activeTab }: MainContentP
             {activeTab === 'saturn6' && (
                 <Saturn6 
                     getGlassStyle={getGlassStyle} 
-                    bgOpacity={bgOpacity} 
+                    bgOpacity={bgOpacity}
+                    isMobileAsideOpen={isMobileAsideOpen}
+                    setIsMobileAsideOpen={setIsMobileAsideOpen}
                 />
             )}
         </main>

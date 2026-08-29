@@ -123,9 +123,11 @@ const SATURN_6_LEVELS = [
 type HomeProps = {  
     getGlassStyle: (opacity: number) => React.CSSProperties;
     bgOpacity: number;
+    isMobileAsideOpen: boolean;
+    setIsMobileAsideOpen: (isOpen: boolean) => void;
 };
 
-export function Saturn6({ getGlassStyle, bgOpacity}: HomeProps) {
+export function Saturn6({ getGlassStyle, bgOpacity, isMobileAsideOpen, setIsMobileAsideOpen}: HomeProps) {
     const [selectedLevel, setSelectedLevel] = useState(SATURN_6_LEVELS[0]);
     const [isHologramActive, setIsHologramActive] = useState(false);
     const [linkSpeed, setLinkSpeed] = useState('8.4');
@@ -152,158 +154,170 @@ export function Saturn6({ getGlassStyle, bgOpacity}: HomeProps) {
         timeoutId = setTimeout(cycleTelemetry, 2000);
         return () => clearTimeout(timeoutId);
     }, []);
-    
+
     return (
-        <div className='flex h-full w-full overflow-hidden'>
-            {/* Transluscent Sidebar */}
+        <div className='flex h-full w-full overflow-hidden relative'>
+            <div
+                className={`md:hidden fixed inset-0 z-30 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${isMobileAsideOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                onClick={() => setIsMobileAsideOpen(false)}
+            />
+
             <aside
-                className="w-100 border-r border-cyan-500/20 overflow-y-auto custom-scrollbar transition-all duration-500"
+                className={`fixed inset-y-0 left-0 z-40 w-[88vw] max-w-[320px] border-r border-cyan-500/20 overflow-y-auto custom-scrollbar transition-transform duration-500 ease-out md:static md:w-100 md:translate-x-0 ${
+                    isMobileAsideOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+                }`}
                 style={getGlassStyle(Math.max(0.04, bgOpacity - 0.1))}
             >
-            <div className='p-4 border-b border-cyan-500/20 bg-black/20'>
-                <h2 className='text-xs font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-2'>
-                <Layers className='w-4 h-4' /> Facility Schematic
-                </h2>
-            </div>
-            <div className='flex flex-col'>
-                {SATURN_6_LEVELS.map((level) => (
-                <button
-                    key={level.id}
-                    onClick={() => setSelectedLevel(level)}
-                    className={`flex items-center gap-4 p-4 transition-all border-l-2 hover:bg-cyan-500/10 group ${
-                    selectedLevel.id === level.id 
-                        ? 'border-cyan-400 bg-cyan-950/40 text-cyan-100' 
-                        : 'border-transparent text-cyan-300/70'
-                    }`}
-                >
-                    <span className="text-[10px] font-mono opacity-60 w-6">L{level.id.toString().padStart(2, '0')}</span>
-                    <div className={`p-2 rounded border transition-all ${
-                        selectedLevel.id === level.id ? 'bg-cyan-500/30 border-cyan-400 text-cyan-200 shadow-[0_0_10px_rgba(34,211,238,0.3)]' : 'bg-black/30 border-cyan-900/40 group-hover:border-cyan-700'
-                    }`}>
-                    {level.icon}
-                    </div>
-                    <div className="flex flex-col items-start text-left flex-1">
-                    <span className={`text-sm font-semibold ${selectedLevel.id === level.id ? 'text-white' : ''}`}>
-                        {level.name}
-                    </span>
-                    <span className="text-[10px] uppercase opacity-70 text-cyan-400">{level.depth} DEPTH</span>
-                    </div>
-                    {selectedLevel.id === level.id && (
-                    <ChevronRight className='w-4 h-4 text-cyan-400 animate-bounce-x' />
-                    )}
-                </button>
-                ))}
-            </div>
+                <div className='p-4 border-b border-cyan-500/20 bg-black/20 flex items-center justify-between'>
+                    <h2 className='text-xs font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-2'>
+                        <Layers className='w-4 h-4' /> Facility Schematic
+                    </h2>
+                    <button
+                        type="button"
+                        onClick={() => setIsMobileAsideOpen(false)}
+                        className="md:hidden rounded border border-cyan-500/40 bg-black/20 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-cyan-300"
+                    >
+                        Close
+                    </button>
+                </div>
+                <div className='flex flex-col'>
+                    {SATURN_6_LEVELS.map((level) => (
+                        <button
+                            key={level.id}
+                            onClick={() => {
+                                setSelectedLevel(level);
+                                setIsMobileAsideOpen(false);
+                            }}
+                            className={`flex items-center gap-4 p-4 transition-all border-l-2 hover:bg-cyan-500/10 group ${
+                                selectedLevel.id === level.id
+                                    ? 'border-cyan-400 bg-cyan-950/40 text-cyan-100'
+                                    : 'border-transparent text-cyan-300/70'
+                            }`}
+                        >
+                            <span className="text-[10px] font-mono opacity-60 w-6">L{level.id.toString().padStart(2, '0')}</span>
+                            <div className={`p-2 rounded border transition-all ${
+                                selectedLevel.id === level.id ? 'bg-cyan-500/30 border-cyan-400 text-cyan-200 shadow-[0_0_10px_rgba(34,211,238,0.3)]' : 'bg-black/30 border-cyan-900/40 group-hover:border-cyan-700'
+                            }`}>
+                                {level.icon}
+                            </div>
+                            <div className="flex flex-col items-start text-left flex-1">
+                                <span className={`text-sm font-semibold ${selectedLevel.id === level.id ? 'text-white' : ''}`}>
+                                    {level.name}
+                                </span>
+                                <span className="text-[10px] uppercase opacity-70 text-cyan-400">{level.depth} DEPTH</span>
+                            </div>
+                            {selectedLevel.id === level.id && (
+                                <ChevronRight className='w-4 h-4 text-cyan-400 animate-bounce-x' />
+                            )}
+                        </button>
+                    ))}
+                </div>
             </aside>
 
-            {/* Content Viewport */}
-            <section className='flex-1 relative p-8 flex flex-col gap-8 overflow-y-auto'>
-            <div className='relative z-10 flex flex-col md:flex-row gap-8 items-start'>
+            <section className='flex-1 relative p-4 pb-24 md:p-8 md:pb-8 flex flex-col gap-8 overflow-y-auto'>
+                <div className='relative z-10 flex flex-col md:flex-row gap-8 items-start'>
+                    <div className='w-full md:w-1/2 flex flex-col gap-6'>
+                        <div
+                            className="relative aspect-video rounded-xl border border-cyan-500/30 overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.8)] transition-all duration-500"
+                            style={getGlassStyle(Math.max(0.04, bgOpacity - 0.1))}
+                        >
+                            <div className='absolute inset-0 p-8 flex items-center justify-center'>
+                                <div className={`relative transition-transform duration-1000 ease-out ${isHologramActive ? 'scale-100' : 'scale-90 opacity-0'}`}>
+                                    <div className="w-24 h-64 bg-cyan-950/20 border-x border-cyan-400/50 relative shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+                                        {SATURN_6_LEVELS.map((l) => (
+                                            <div
+                                                key={l.id}
+                                                style={{ top: `${(l.id -1) * 9}%` }}
+                                                className={`absolute w-full h-1 border-b border-cyan-400/60 transition-all duration-300 ${
+                                                    selectedLevel.id === l.id ? 'bg-cyan-400 shadow-[0_0_15px_cyan] z-20 scale-x-125' : 'opacity-40'
+                                                }`}
+                                            />
+                                        ))}
+                                        <div className="absolute w-full h-4 bg-linear-to-b from-transparent via-cyan-400/30 to-transparent top-0 animate-scan pointer-events-none" />
+                                    </div>
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-cyan-500/30 rounded-full animate-spin-slow" />
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-cyan-500/20 rounded-full animate-reverse-spin" />
+                                </div>
+                            </div>
 
-                {/* Holographic Shaft View */}
-                <div className='w-full md:w-1/2 flex flex-col gap-6'>
-                <div
-                    className="relative aspect-video rounded-xl border border-cyan-500/30 overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.8)] transition-all duration-500"
-                    style={getGlassStyle(Math.max(0.04, bgOpacity - 0.1))}
-                >
-                    <div className='absolute inset-0 p-8 flex items-center justify-center'>
-                    <div className={`relative transition-transform duration-1000 ease-out ${isHologramActive ? 'scale-100' : 'scale-90 opacity-0'}`}>
-                        <div className="w-24 h-64 bg-cyan-950/20 border-x border-cyan-400/50 relative shadow-[0_0_20px_rgba(34,211,238,0.15)]">
-                        {SATURN_6_LEVELS.map((l) => (
+                            <div className="absolute bottom-4 left-4 flex gap-2">
+                                <div className="bg-black/60 backdrop-blur px-3 py-1 rounded-full border border-cyan-500/40 flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+                                    <span className="text-[10px] font-mono uppercase tracking-tight text-cyan-300">PATI Holographic Shaft View</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='grid grid-cols-2 gap-4'>
                             <div
-                            key={l.id}
-                            style={{ top: `${(l.id -1) * 9}%` }}
-                            className={`absolute w-full h-1 border-b border-cyan-400/60 transition-all duration-300 ${
-                            selectedLevel.id === l.id ? 'bg-cyan-400 shadow-[0_0_15px_cyan] z-20 scale-x-125' : 'opacity-40'                                }`}
-                            />
-                        ))}
-                        <div className="absolute w-full h-4 bg-linear-to-b from-transparent via-cyan-400/30 to-transparent top-0 animate-scan pointer-events-none" />
-                        </div>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-cyan-500/30 rounded-full animate-spin-slow" />
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-cyan-500/20 rounded-full animate-reverse-spin" />
-                    </div>
-                    </div>
-
-                    <div className="absolute bottom-4 left-4 flex gap-2">
-                    <div className="bg-black/60 backdrop-blur px-3 py-1 rounded-full border border-cyan-500/40 flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                        <span className="text-[10px] font-mono uppercase tracking-tight text-cyan-300">PATI Holographic Shaft View</span>
-                    </div>
-                    </div>
-                </div>
-
-                {/* Telemetry Readouts */}
-                <div className='grid grid-cols-2 gap-4'>
-                    <div
-                    className="p-4 rounded-lg border border-cyan-500/30 transition-all duration-500"
-                    style={getGlassStyle(bgOpacity)}
-                    >
-                    <div className="flex items-center gap-2 mb-2 text-cyan-400 uppercase text-[10px] font-bold">
-                        <Radio className='w-3.5 h-3.5' />Core Link Speed
-                    </div>
-                    <div className="text-xl font-mono text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{linkSpeed} GB/s</div>
-                    </div>
-                    <div
-                    className="p-4 rounded-lg border border-cyan-500/30 transition-all duration-500"
-                    style={getGlassStyle(bgOpacity)}
-                    >
-                    <div className="flex items-center gap-2 mb-2 text-cyan-400 uppercase text-[10px] font-bold">
-                        <Info className="w-3.5 h-3.5" /> Void Trap Stability
-                    </div>
-                    <div className="text-xl font-mono text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
-                        NOMINAL
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                {/* Level Detail Panel */}
-                <div className='w-full md:w-1/2'>
-                <div
-                    className="border border-cyan-500/30 rounded-xl overflow-hidden shadow-2xl transition-all duration-500"
-                    style={getGlassStyle(bgOpacity)}
-                >
-                    <div className="bg-cyan-500/15 p-6 border-b border-cyan-500/30">
-                    <div className="flex justify-between items-start">
-                        <div>
-                        <span className="text-xs font-mono text-cyan-300 block mb-1 uppercase tracking-widest">
-                            Sector Profile // Level {selectedLevel.id}
-                        </span>
-                        <h3 className="text-2xl font-bold text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                            {selectedLevel.name}
-                        </h3>
-                        </div>
-                        <div className="p-3 bg-black/60 rounded-lg border border-cyan-400/40 text-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.2)]">
-                        {selectedLevel.icon}
-                        </div>
-                    </div>
-                    </div>
-
-                    <div className='p-6 space-y-6'>
-                    <div className='space-y-2'>
-                        <label className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest block">Description</label>
-                        <p className="text-cyan-100 leading-relaxed text-sm italic">"{selectedLevel.description}"</p>
-                    </div>
-
-                    <div className='space-y-2'>
-                        <label className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest block">Technical Specifications</label>
-                        <div className="bg-black/50 p-4 rounded-lg border border-cyan-900/50 text-sm font-mono text-cyan-200">
-                        {selectedLevel.details}
+                                className="p-4 rounded-lg border border-cyan-500/30 transition-all duration-500"
+                                style={getGlassStyle(bgOpacity)}
+                            >
+                                <div className="flex items-center gap-2 mb-2 text-cyan-400 uppercase text-[10px] font-bold">
+                                    <Radio className='w-3.5 h-3.5' />Core Link Speed
+                                </div>
+                                <div className="text-xl font-mono text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">{linkSpeed} GB/s</div>
+                            </div>
+                            <div
+                                className="p-4 rounded-lg border border-cyan-500/30 transition-all duration-500"
+                                style={getGlassStyle(bgOpacity)}
+                            >
+                                <div className="flex items-center gap-2 mb-2 text-cyan-400 uppercase text-[10px] font-bold">
+                                    <Info className="w-3.5 h-3.5" /> Void Trap Stability
+                                </div>
+                                <div className="text-xl font-mono text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">
+                                    NOMINAL
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div className='flex items-center justify-between pt-4 border-t border-cyan-500/20'>
-                        <span className="text-xs font-mono text-cyan-300 font-semibold">{selectedLevel.status}</span>
-                        <button className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-bold rounded uppercase tracking-widest shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all">
-                        Access Logs <ExternalLink className="w-3.5 h-3.5" />
-                        </button>
-                    </div>
-                    </div>
-                </div>
-                </div>
+                    <div className='w-full md:w-1/2'>
+                        <div
+                            className="border border-cyan-500/30 rounded-xl overflow-hidden shadow-2xl transition-all duration-500"
+                            style={getGlassStyle(bgOpacity)}
+                        >
+                            <div className="bg-cyan-500/15 p-6 border-b border-cyan-500/30">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <span className="text-xs font-mono text-cyan-300 block mb-1 uppercase tracking-widest">
+                                            Sector Profile // Level {selectedLevel.id}
+                                        </span>
+                                        <h3 className="text-2xl font-bold text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                                            {selectedLevel.name}
+                                        </h3>
+                                    </div>
+                                    <div className="p-3 bg-black/60 rounded-lg border border-cyan-400/40 text-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.2)]">
+                                        {selectedLevel.icon}
+                                    </div>
+                                </div>
+                            </div>
 
-            </div>
+                            <div className='p-6 space-y-6'>
+                                <div className='space-y-2'>
+                                    <label className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest block">Description</label>
+                                    <p className="text-cyan-100 leading-relaxed text-sm italic">"{selectedLevel.description}"</p>
+                                </div>
+
+                                <div className='space-y-2'>
+                                    <label className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest block">Technical Specifications</label>
+                                    <div className="bg-black/50 p-4 rounded-lg border border-cyan-900/50 text-sm font-mono text-cyan-200">
+                                        {selectedLevel.details}
+                                    </div>
+                                </div>
+
+                                <div className='flex items-center justify-between pt-4 border-t border-cyan-500/20'>
+                                    <span className="text-xs font-mono text-cyan-300 font-semibold">{selectedLevel.status}</span>
+                                    <button className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-bold rounded uppercase tracking-widest shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all">
+                                        Access Logs <ExternalLink className="w-3.5 h-3.5" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
+
         </div>
     );
 }

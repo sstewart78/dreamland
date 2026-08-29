@@ -8,7 +8,8 @@ import './App.css'
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
-  const [bgOpacity, setBgOpacity] = useState(0.25);
+  const [bgOpacity, setBgOpacity] = useState(0.85);
+  const [isMobileAsideOpen, setIsMobileAsideOpen] = useState(false);
 
   return (
     <>
@@ -19,11 +20,16 @@ function App() {
           onTabChange={setActiveTab}
           bgOpacity={bgOpacity}
           setBgOpacity={setBgOpacity}
+          showMobileSchematicButton={activeTab === 'saturn6'}
+          isMobileAsideOpen={isMobileAsideOpen}
+          onToggleMobileSchematic={() => setIsMobileAsideOpen((open) => !open)}
         />
         <MainContent
           bgOpacity={bgOpacity}
           setActiveTab={setActiveTab}
           activeTab={activeTab}
+          isMobileAsideOpen={isMobileAsideOpen}
+          setIsMobileAsideOpen={setIsMobileAsideOpen}
         />
         <Animations />
       </section>
