@@ -240,7 +240,7 @@ export function Saturn6({ getGlassStyle, bgOpacity, isMobileAsideOpen, setIsMobi
                                     </div>
                                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-48 h-40 sm:h-48 border border-cyan-500/30 rounded-full overflow-hidden">
                                         <div className="absolute left-1/2 top-1/2 h-px w-[52%] -translate-y-1/2 origin-left animate-radar-sweep">
-                                            <div className="h-full w-full bg-gradient-to-r from-transparent via-cyan-300/90 to-cyan-100 shadow-[0_0_12px_rgba(34,211,238,0.9)]" />
+                                            <div className="h-full w-full bg-linear-to-r from-transparent via-cyan-300/90 to-cyan-100 shadow-[0_0_12px_rgba(34,211,238,0.9)]" />
                                         </div>
                                     </div>
                                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 sm:w-64 h-52 sm:h-64 border border-cyan-500/20 rounded-full animate-reverse-spin" />
