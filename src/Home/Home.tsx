@@ -26,7 +26,7 @@ export function Home({ getGlassStyle, bgOpacity, setActiveTab }: HomeProps) {
                 </p>
 
                 <div className="mt-8 flex flex-col items-center gap-4">
-                  <a className="px-8 py-2.5 rounded-lg bg-cyan-500/25 border border-cyan-400/60 text-cyan-100 font-mono text-sm tracking-widest uppercase animate-pulse shadow-[0_0_20px_rgba(34,211,238,0.4)]">
+                  <a onClick={() => setActiveTab('preview')} className="px-8 py-2.5 rounded-lg bg-cyan-500/25 border border-cyan-400/60 text-cyan-100 font-mono text-sm tracking-widest uppercase animate-pulse shadow-[0_0_20px_rgba(34,211,238,0.4)]">
                     Book Preview
                   </a>
 
