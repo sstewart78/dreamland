@@ -24,7 +24,7 @@ export function Nav({ activeTab, onTabChange, showMobileSchematicButton, isMobil
                   onTabChange={onTabChange}
                   page='home'
                   icon={<BookOpen className='w-3.5 h-3.5' />}
-                  text='Overview'
+                  text='Home'
                 />
                 <Button
                   activeTab={activeTab}
