@@ -14,7 +14,7 @@ export function Animations() {
             .animate-status-pulse { animation: status-pulse 2s ease-in-out infinite; }
             .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
             .custom-scrollbar::-webkit-scrollbar-track { background: rgba(10, 12, 14, 0.5); }
-            .custom-scrollbar::-webkit-scrollbar-thumb { background: #0891b2; border-radius: 4px; } 4px; }
+            .custom-scrollbar::-webkit-scrollbar-thumb { background: #0891b2; border-radius: 4px; }
         `}} />
     );
 }

@@ -163,7 +163,7 @@ export function Saturn6({ getGlassStyle, bgOpacity, isMobileAsideOpen, setIsMobi
             />
 
             <aside
-                className={`fixed left-0 z-40 w-[88vw] max-w-[320px] border-r border-cyan-500/20 overflow-y-auto custom-scrollbar transition-transform duration-500 ease-out md:static md:inset-y-0 md:w-100 md:translate-x-0 ${
+                className={`fixed left-0 z-40 w-[88vw] max-w-[320px] border-r border-cyan-500/20 overflow-y-auto custom-scrollbar transition-transform duration-500 ease-out md:static md:inset-y-0 md:w-96 md:translate-x-0 ${
                     isMobileAsideOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
                 } md:top-0 md:bottom-0 ${isMobileAsideOpen ? 'top-22 bottom-0' : 'top-22 bottom-0'}`}
                 style={getGlassStyle(Math.max(0.04, bgOpacity - 0.1))}

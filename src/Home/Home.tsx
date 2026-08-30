@@ -13,7 +13,7 @@ export function Home({ getGlassStyle, bgOpacity, setActiveTab }: HomeProps) {
                 className="relative z-20 flex flex-col items-center text-center max-w-3xl px-8 py-12 rounded-2xl border border-cyan-500/40 shadow-[0_0_60px_rgba(0,0,0,0.9)] transition-all duration-500"
                 style={getGlassStyle(bgOpacity)}
               >
-                <div className='inline-flex items-center gap-2 px-4 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text=[10px] font-mono uppercase tracking-widest mb-6 shadow-[0_0_10px_rgba(34,211,238,0,2)]'>
+                <div className='inline-flex items-center gap-2 px-4 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-[10px] font-mono uppercase tracking-widest mb-6 shadow-[0_0_10px_rgba(34,211,238,0,2)]'>
                   <Terminal className='w-3.5 h-3.5' /> ARCHIVE DATA TRANSMISSION
                 </div>
 
