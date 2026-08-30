@@ -21,6 +21,7 @@ function Header({ activeTab, onTabChange, bgOpacity, setBgOpacity, showMobileSch
         isMobileAsideOpen={isMobileAsideOpen}
         onToggleMobileSchematic={onToggleMobileSchematic}
       />
+      <h2 className="sm:text-base md:text-lg xl:text-2xl hidden lg:block font-bold text-white">The Path to Dreamland</h2>
       <HUDToggle bgOpacity={bgOpacity} setBgOpacity={setBgOpacity} />
     </header>
   );

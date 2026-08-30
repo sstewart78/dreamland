@@ -7,7 +7,7 @@ type HUDToggleProps = {
 };
 export function HUDToggle({ bgOpacity, setBgOpacity }: HUDToggleProps) {
     return(
-        <div className='flex items-center gap-3 text-[10px] font-mono'>
+        <div className='flex items-center gap-3 text-[10px] font-mono lg:pl-30'>
             <div className='flex items-center gap-2 px-3 py-1 rounded-lg border border-cyan-400/50 bg-cyan-950/80 backdrop-blur shadow-[0_0_12px_rgba(34,211,238,0.25)]'>
               <Eye className='w-3.5 h-3.5 text-cyan-300 animate-pulse' />
               <span className='text-cyan-300 font-bold uppercase hidden md:inline'>HUD Glass:</span>
