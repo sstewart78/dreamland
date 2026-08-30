@@ -31,7 +31,7 @@ export function Nav({ activeTab, onTabChange, showMobileSchematicButton, isMobil
                   onTabChange={onTabChange}
                   page='saturn6'
                   icon={<MapPin className='w-3.5 h-3.5' />}
-                  text='Saturn-6 Map'
+                  text='Saturn-6'
                 />
                 <Button
                     activeTab={activeTab}
