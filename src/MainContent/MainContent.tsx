@@ -103,11 +103,13 @@ export function MainContent({
                                     </h3>
 
                                     <p className="text-sm leading-relaxed text-cyan-100/90 italic border-l-2 border-cyan-500/50 pl-4 py-1">
-                                        "As the world is plunged into a devastating nuclear war, Saturn-6—a state-of-the-art scientific research bunker buried deep beneath the Alaskan permafrost—becomes the fragile crucible for what remains of civilization. Survival alone is not enough... what matters is what comes next."
+                                        Deep beneath the Alaskan wilderness, more than two thousand scientists, soldiers, and civilians live inside Saturn-6—an underground citadel built to preserve humanity against an increasingly unstable world. 
+                                        As nuclear tensions push civilization toward the brink, microbiologist Dr. Jonathan Turner begins uncovering disturbing secrets within the facility, its increasingly unpredictable AI, and the mysterious promise known only as Dreamland. 
+                                        Beyond Saturn-6, events are unfolding that suggest the danger may be far greater than anyone realizes.
                                     </p>
 
                                     <p className="text-xs leading-relaxed text-cyan-200/80 font-mono">
-                                        Follow microbiologist <span className="text-cyan-300 font-bold">Dr. Jonathan Turner</span> as he battles claustrophobia and hidden agendas within DARTI's Level 6 containment labs, while billionaire financier <span className="text-cyan-300 font-bold">Charles Chapman</span> tightens his authoritarian grip from the Gilded Sector above the mysterious Void Trap.
+                                        The Path to Dreamland is a dystopian science-fiction epic about a civilization approaching the edge—and the people who may have been chosen to survive what comes next.
                                     </p>
 
                                     {/* Excerpt Chips */}
